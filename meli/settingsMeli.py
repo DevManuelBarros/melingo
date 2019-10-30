@@ -4,8 +4,9 @@ Datos de entrada de la aplicación.
  
 class settingsMeli():
     def __init__(self):
-        self.client_id = 12345 #APP ID
+        #APP ID
+        self.client_id = 4638553981988438
         #Secret Key
-        self.client_secret = 'secret key'
-        self.redirect_uri = 'redirect edit when create app'
-        self.callbacks = 'callbacks edit when create app'
+        self.client_secret = 'tYBfpIOp61NlNOem9VulDoKR122hLYWf'
+        self.redirect_uri = 'http://localhost:8000/melingo/'
+        self.callbacks = 'http://localhost:8000'
