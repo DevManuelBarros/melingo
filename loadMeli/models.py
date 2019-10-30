@@ -16,7 +16,7 @@ class MeansModel(models.Model):
     def __str__(self):
         return self.term
  
-class loginModel(models.Model):
+class LoginModel(models.Model):
     access_token = models.CharField(max_length=128, blank=False, null=False)
     token_type = models.CharField(max_length=128)
     expires_in = models.IntegerField()
