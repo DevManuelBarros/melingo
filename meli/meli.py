@@ -16,13 +16,22 @@ import requests
 import ssl
 from .settingsMeli import settingsMeli
 class Meli(object):
-    def __init__(self, access_token=None, refresh_token=None):
+    def __init__(self, access_token=None, refresh_token=None, charge_data=False):
         self.settings = settingsMeli()
         self.client_id = self.settings.client_id
         self.client_secret = self.settings.client_secret
-        self.access_token = access_token
-        self.refresh_token = refresh_token
-        self.expires_in = None
+        if charge_data == False:
+            self.access_token = access_token
+            self.refresh_token = refresh_token
+            self.expires_in = None
+        else:
+            data_session = self.settings.getDataSession()
+            print(data_session[0])
+            print(data_session[1])
+            self.access_token = data_session[0]
+            self.refresh_token = data_session[1]
+            self.expires_in = data_session[2]
+        
         self.redirect_uri = self.settings.redirect_uri
         self.callbacks = self.settings.callbacks
 

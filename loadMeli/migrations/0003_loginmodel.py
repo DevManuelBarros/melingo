@@ -8,7 +8,6 @@ class Migration(migrations.Migration):
     dependencies = [
         ('loadMeli', '0002_insertvalues'),
     ]
- 
     operations = [
         migrations.CreateModel(
             name='LoginModel',

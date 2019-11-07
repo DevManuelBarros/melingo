@@ -1,6 +1,6 @@
 from django.db import migrations, models, transaction
-
-
+ 
+ 
 def insertValue(apps, schema_editor):
     LoginModel = apps.get_model('loadMeli', 'LoginModel')
     with transaction.atomic():
@@ -8,16 +8,17 @@ def insertValue(apps, schema_editor):
                                   token_type='TokenType', 
                                   expires_in = 0,
                                   scope='scope',
-                                  refresh_token='RefreshToken')
-
+                                  refresh_token='RefreshToken',
+                                  user_id=0)
+ 
 class Migration(migrations.Migration):
-
+ 
     initial = False
-
+ 
     dependencies = [
         ('loadMeli', '0003_loginmodel'),
     ]
-
+ 
     operations = [
         migrations.RunPython(insertValue, migrations.RunPython.noop)
     ]
