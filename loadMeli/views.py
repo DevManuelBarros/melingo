@@ -5,8 +5,10 @@ from .serializers import LoginModelSerializer
 from .models import LoginModel
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
+from django.forms.models import model_to_dict
 
 
+#www.mercadolibre.com/jms/mla/lgz/logout?go=http%3A%2F
 
 @login_required(redirect_field_name='login')
 def initial_login(request):
@@ -23,7 +25,6 @@ def login(request):
     if code:
         meli = Meli()
         response = meli.authorize_melingo(code)
-        print(type(response))
         tmpInstance = LoginModel.objects.all().last()
         tmpSerializer  = LoginModelSerializer()
         tmpSerializer.update(tmpInstance, response)
@@ -33,8 +34,7 @@ def login(request):
 
 def profile(request):
     meli = Meli(charge_data=True)
-    response = meli.get('/users/me', params={'access_token':meli.access_token})
-    print(response.content)
-    return HttpResponse(response.content)
+    context = meli.get('/users/me', params={'access_token':meli.access_token})
+    return render(request, 'loadMeli/profile.html', {'context' : context.json()})
 
 

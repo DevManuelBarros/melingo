@@ -1,0 +1,9 @@
+{% extends '../base.html' %}
+{{ context }}
+{% block content %}
+<p>Hola
+{{ context.nickname }}</p>
+    {% for key, value in context.items %}
+        {{ key }} : {{ value }}<br />
+    {% endfor %}
+{% endblock %}
